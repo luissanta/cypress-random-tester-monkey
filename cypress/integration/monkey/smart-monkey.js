@@ -578,19 +578,7 @@ const functions = [
     [fillInput, clearInput, clickRandAnchor, clickRandButton]
 ];
 
-// describe('have login', function() {
-//     it('login into ghost', function() {
-//         cy.visit('http://20.102.114.58/ghost');
-//         cy.wait(1000);
-//         cy.get('#ember8').type('da.ramirez55@uniandes.edu.co', { force: true });
-//         cy.get('#ember10').type('Cg94F4J&$#i8qjX@a9iP', { force: true });
-//         cy.get('#ember12').click({ force: true });
-//         cy.wait(1000);
-//     })
-// })
-
 describe( `${appName} under smarter monkeys`, function() {
-    //Listeners
     cy.on('uncaught:exception', (err)=>{
         cy.task('genericLog', {'message':`An exception occurred: ${err}`})
         cy.task('genericReport', {'html': `<p><strong>Uncaught exception: </strong>${err}</p>`});
@@ -604,7 +592,15 @@ describe( `${appName} under smarter monkeys`, function() {
         cy.task('genericReport', {'html': `<p><strong>Test failed with the error: </strong>${err}</p>`});
         return false;
     });
-    it(`visits ${appName} and survives smarter monkeys`, function() {
+    it('login into ghost', function() {
+        cy.visit('http://20.102.114.58/ghost/#/signin');
+        cy.wait(1000)
+        cy.get('[id="ember8"]').type('da.ramirez55@uniandes.edu.co');
+        cy.get('[id="ember10"]').type('Cg94F4J&$#i8qjX@a9iP');
+        cy.get('[id="ember12"]').click();
+        cy.wait(1000);
+    })
+    it(`survives smarter monkeys`, function() {
         if(!seed) seed = getRandomInt(0, Number.MAX_SAFE_INTEGER);
         cy.task('logStart', {"type":"monkey", "url":url, "seed":seed})
         cy.log(`Seed: ${seed}`)
@@ -622,13 +618,6 @@ describe( `${appName} under smarter monkeys`, function() {
             pending_events[6] = events*pct_browserChaos/100;
             pending_events[7] = events*pct_actions/100;
 
-            cy.visit(url).then((win)=>{
-                let d = win.document
-                curPageMaxY = Math.max( d.body.scrollHeight, d.body.offsetHeight, d.documentElement.clientHeight, d.documentElement.scrollHeight, d.documentElement.offsetHeight) - win.innerHeight
-                curPageMaxX = Math.max( d.body.scrollWidth, d.body.offsetWidth, d.documentElement.clientWidth, d.documentElement.scrollWidth, d.documentElement.offsetWidth) - win.innerWidth
-            })
-            cy.wait(1000)
-            //Add an event for each type of event in order to enter the else statement of randomEvent method
             for(let i = 0; i < events + 7; i++){
                 evtIndex++
                 randomEvent()

@@ -4,6 +4,7 @@
     <list default="true" id="e759d2f5-a9e0-4141-b08e-63ad3cbe49e6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cypress/integration/monkey/smart-monkey.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/monkey/smart-monkey.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smart-monkey-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/smart-monkey-config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,7 @@
       <workItem from="1667344843629" duration="817000" />
       <workItem from="1667345948527" duration="2468000" />
       <workItem from="1667386775646" duration="1975000" />
-      <workItem from="1667406034219" duration="5550000" />
+      <workItem from="1667406034219" duration="12869000" />
     </task>
     <servers />
   </component>
