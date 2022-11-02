@@ -9,14 +9,12 @@ const events = Cypress.env('events')|| 100;
 const delay = Cypress.env('delay') || 100;
 var seed = Cypress.env('seed');
 
-const num_categories = 7;
-
 const pct_clicks = Cypress.env('pctClicks') || 12;
 const pct_scrolls = Cypress.env('pctScroll') || 12;
 const pct_selectors = Cypress.env('pctSelectors') || 12;
 const pct_keys = Cypress.env('pctKeys') || 12;
 const pct_spkeys = Cypress.env('pctSpKeys') || 12;
-const pct_pgnav = Cypress.env('pctPgNav') || 12; 
+const pct_pgnav = Cypress.env('pctPgNav') || 12;
 const pct_browserChaos = Cypress.env('pctBwChaos') || 12;
 const pct_actions = Cypress.env('pctActions') || 16;
 
@@ -24,7 +22,7 @@ const LOG_FILENAME = "../../../results/smart-monkey-execution.html";
 
 /*
  Bob Jenkins Small Fast, aka smallprng pseudo random number generator is the chosen selection for introducing seeding in the tester
- Credits of the implementation to bryc's answer in this stackoverflow post: https://stackoverflow.com/a/47593316 
+ Credits of the implementation to bryc's answer in this stackoverflow post: https://stackoverflow.com/a/47593316
 */
 function jsf32(a, b, c, d) {
     return function() {
@@ -86,10 +84,10 @@ var evtIndex = 1
 var focused = false
 
 function randClick(){
-    
+
     let randX = getRandomInt(curX, viewportWidth)
     let randY = getRandomInt(curY, viewportHeight)
-    
+
     cy.window().then((win)=>{
         let info = ""
         let element = win.document.elementFromPoint(randX, randY)
@@ -141,7 +139,7 @@ function randDClick(){
 
     let randX = getRandomInt(curX, viewportWidth)
     let randY = getRandomInt(curY, viewportHeight)
-    
+
     cy.window().then((win)=>{
         let info = ""
         console.log(win.document)
@@ -192,10 +190,10 @@ function randDClick(){
 }
 
 function randRClick(){
-    
+
     let randX = getRandomInt(curX, viewportWidth)
     let randY = getRandomInt(curY, viewportHeight)
-    
+
     cy.window().then((win)=>{
         let info = ""
         console.log(win.document)
@@ -238,14 +236,14 @@ function randRClick(){
         else{
             cy.get('body').rightclick(randX, randY, {force:true})
             info = `Position: (${randX}, ${randY}). INVALID, no selectable element`
-        }        
+        }
         cy.task("logCommand", { funtype: "Random right click", info: info})
         focused = !!win.document.activeElement
     })
 }
 
 function randHover(){
-    
+
     let randX = getRandomInt(curX, viewportWidth)
     let randY = getRandomInt(curY, viewportHeight)
 
@@ -297,11 +295,11 @@ function randHover(){
 function avPag(){
     let info = ""
     let prev = curY.valueOf()
-    if(curPageMaxY - curY >= viewportHeight){ 
+    if(curPageMaxY - curY >= viewportHeight){
         if(curPageMaxY - (curY + viewportHeight) >= viewportHeight){
             curY = curY + viewportHeight
             cy.scrollTo(curX, curY)
-        } 
+        }
         else{
             curY = curPageMaxY - viewportHeight
             cy.scrollTo(curX, curY)
@@ -339,11 +337,11 @@ function rePag(){
 function horizontalScrollFw(){
     let info = ""
     let prev = curX.valueOf()
-    if(curPageMaxX - curX >= viewportWidth){ 
+    if(curPageMaxX - curX >= viewportWidth){
         if(curPageMaxX - (curX + viewportWidth) >= viewportWidth){
             curX = curX + viewportWidth
             cy.scrollTo(curX, curY)
-        } 
+        }
         else{
             curX = curPageMaxX - viewportWidth
             cy.scrollTo(curX, curY)
@@ -480,7 +478,6 @@ function tab(){
     cy.task("logCommand", { funtype: "Selector focus (tab)", info: info})
 }
 
-
 function clickRandAnchor(){
     cy.window().then((win)=>{
         let $links = win.document.getElementsByTagName("a");
@@ -506,7 +503,7 @@ function clickRandButton(){
                 cy.wrap(randomButton).click({force: true});
                 info = `Clicked button ${randomButton.textContent} with jsPath ${fullPath(randomButton)}`
             } else info = `Button ${randomButton.textContent} is hidden`
-        } else info = "INVALID. There are no buttons in the current page" 
+        } else info = "INVALID. There are no buttons in the current page"
         cy.task("logCommand", {funtype: "Action: click button", info: info})
     })
 }
@@ -562,11 +559,12 @@ function fillInput(){ //Or fill form
             }
             else info = `Input ${inp.id} is hidden`
         }
-        else info = "INVALID. There are no input elements in the current page"        
+        else info = "INVALID. There are no input elements in the current page"
         console.log(info)
         cy.task("logCommand", {funtype: "Action: click anchor", info: info})
     })
 }
+
 function clearInput(){
     cy.window().then((win)=>{
         let info = ""
@@ -584,10 +582,12 @@ function clearInput(){
         cy.task("logCommand", {funtype: "Action: click anchor", info: info})
     })
 }
+
 function clearLocalStorage(){
     cy.clearLocalStorage();
     cy.task("logCommand", {funtype: "Chaos: Clear local storage", info: "Local storage is clear"})
 }
+
 function clearCookies(){
     cy.clearCookies();
     cy.task("logCommand", {funtype: "Chaos: Clear cookies", info: "Cookies are clear"})
@@ -623,15 +623,15 @@ function getEvtType(i){
     else if (i===7) return "Action/Click"
 }
 
-var pending_events = [,,,,,,,]; 
+var pending_events = [,,,,,,,];
 
 //Aggregate in a matrix-like constant
 const functions = [
-    [randClick, randDClick, randRClick], 
-    [horizontalScrollBk, horizontalScrollFw, avPag, rePag], 
-    [randHover, tab], 
-    [typeCharKey], 
-    [spkeypress, enter], 
+    [randClick, randDClick, randRClick],
+    [horizontalScrollBk, horizontalScrollFw, avPag, rePag],
+    [randHover, tab],
+    [typeCharKey],
+    [spkeypress, enter],
     [reload, navBack, navForward],
     [changeViewport, clearCookies, clearLocalStorage],
     [fillInput, clearInput, clickRandAnchor, clickRandButton]
@@ -654,7 +654,7 @@ describe( `${appName} under smarter monkeys`, function() {
     });
     it(`visits ${appName} and survives smarter monkeys`, function() {
         if(!seed) seed = getRandomInt(0, Number.MAX_SAFE_INTEGER);
-        
+
         cy.task('logStart', {"type":"monkey", "url":url, "seed":seed})
         cy.log(`Seed: ${seed}`)
         cy.task('genericLog', {"message":`Seed: ${seed}`})
@@ -670,8 +670,8 @@ describe( `${appName} under smarter monkeys`, function() {
             pending_events[5] = events*pct_pgnav/100;
             pending_events[6] = events*pct_browserChaos/100;
             pending_events[7] = events*pct_actions/100;
-            
-            cy.visit(url).then((win)=>{   
+
+            cy.visit(url).then((win)=>{
                 let d = win.document
                 curPageMaxY = Math.max( d.body.scrollHeight, d.body.offsetHeight, d.documentElement.clientHeight, d.documentElement.scrollHeight, d.documentElement.offsetHeight) - win.innerHeight
                 curPageMaxX = Math.max( d.body.scrollWidth, d.body.offsetWidth, d.documentElement.clientWidth, d.documentElement.scrollWidth, d.documentElement.offsetWidth) - win.innerWidth
@@ -684,14 +684,10 @@ describe( `${appName} under smarter monkeys`, function() {
             }
         }
         else cy.task('logPctNo100')
-        
+
     })
-    
+
     afterEach(()=>{
         cy.task('logEnd')
     })
 })
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//End of smart monkey
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -32,5 +32,26 @@ Events that change the browser configuration such as changing the viewport, clea
 - **Selector Click Events**:
 Clicks performed to a specific type of element considering the HTML tags that typically induce an interaction such as `<a>`, `<button>`, `<input type="submit">`; also, events of filling and clearing an input element.
 
-## Results
-When the test finishes running, an HTML report and a video of the execution in a browser will be generated in the results folder.
+## Run
+Luego de comprender el detalle de los eventos que genera esta versión de Monkey, puede cambiar los archivos de configuración según su necesidad y posteriormente ejecutar la prueba. En particular, es necesario que asegure que el atributo ‘baseURL' corresponda con https://www.google.com/. Para ejecutar la prueba abra una terminal y ubíquese en el directorio raíz del repositorio. Desde allí, descargue las dependencias del proyecto ejecutando el comando:
+- `npm install`
+
+Esto instalará un directorio llamado "node_modules", que contiene las librerías que se utilizan como parte del código del proyecto. El comando puede tardar un poco en completarse, dado que instala librerías de gran tamaño. En caso de que usted cuente con alguna de las dependencias mencionadas en el apartado "Herramientas utilizadas", puede optar por instalar las otras dependencias de forma manual para reducir el tamaño de los archivos descargados, siguiendo las instrucciones del archivo README.md.
+
+Luego de este paso, puede ejecutar Cypress por medio del comando:
+
+- `cypress run -C <archivo-config>`
+
+- Ejemplo: `cypress run -C monkey-config.json`
+
+En el siguiente paso se explicará lo que sucede al ejecutar la prueba.
+
+Es necesario que indique el archivo de configuración correspondiente a la versión que quiere utilizar (monkey-config.json o smart-monkey-config.json). Otros flags que funcionan pueden ser los siguientes:
+
+- `-b <browser>` : permite elegir el navegador en que se va a correr la prueba. Los posibles valores de browser incluyen chrome, chromium, edge, electron, firefox. En caso de no incluir esta opción, Cypress buscará un navegador adecuado.
+- `--headed` : permite ejecutar la prueba en modo headed, lo que quiere decir que ejecuta el navegador como un programa con interfaz en la máquina.
+- `--headless` : permite ejecutar la prueba en modo headless, lo que quiere decir que el navegador no se ejecuta como un programa con interfaz en la máquina.
+- `-port <num-puerto>` : permite configurar otro puerto diferente al puerto por defecto para correr la prueba.
+
+## Results and report
+En la misma carpeta "results" mencionada anteriormente, podrá ver un archivo en formato .html, que contiene un reporte indicando los eventos que se indujeron en la aplicación web y su resultado. Abra el reporte en un navegador, y podrá ver una sección inicial con el nombre de la aplicación que se va a probar, la fecha de la ejecución y la semilla utilizada, como se muestra a continuación:
