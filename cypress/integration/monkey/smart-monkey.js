@@ -9,6 +9,8 @@ const events = Cypress.env('events')|| 100;
 const delay = Cypress.env('delay') || 100;
 var seed = Cypress.env('seed');
 
+const num_categories = 7;
+
 const pct_clicks = Cypress.env('pctClicks') || 12;
 const pct_scrolls = Cypress.env('pctScroll') || 12;
 const pct_selectors = Cypress.env('pctSelectors') || 12;
@@ -97,20 +99,6 @@ function randClick(){
                 cy.get(`#${element.id}`).click()
                 info = `${element.tagName} with id: ${element.id}`
             }
-            /*
-            else if(!!element.className){ //boolean that indicates if the element has a non-empty className
-                let className = element.tagName.splice(0,1)+'.'+element.className.replace(/\s/g, ".")
-                cy.get(`.${className}`).then($candidates => {
-                    //click the first visible candidate
-                    for(let i = 0 i < $candidates.length i++){
-                        let candidate = $candidates.get(i)
-                        if(!Cypress.dom.isHidden(candidate)){
-                            cy.wrap(candidate).click({force:true})
-                            break
-                        }
-                    }
-                })
-            }*/
             else{
                 let jsPath = fullPath(element)
                 cy.get(jsPath).then($candidates => {
@@ -136,7 +124,6 @@ function randClick(){
 }
 
 function randDClick(){
-
     let randX = getRandomInt(curX, viewportWidth)
     let randY = getRandomInt(curY, viewportHeight)
 
@@ -151,20 +138,6 @@ function randDClick(){
                 cy.get(`#${element.id}`).dblclick()
                 info = `${element.tagName} with id: ${element.id}`
             }
-            /*
-            else if(!!element.className){ //boolean that indicates if the element has a non-empty className
-                let className = element.tagName.splice(0,1)+'.'+element.className.replace(/\s/g, ".")
-                cy.get(`.${className}`).then($candidates => {
-                    //dblclick the first visible candidate
-                    for(let i = 0 i < $candidates.length i++){
-                        let candidate = $candidates.get(i)
-                        if(!Cypress.dom.isHidden(candidate)){
-                            cy.wrap(candidate).dblclick({force:true})
-                            break
-                        }
-                    }
-                })
-            }*/
             else{
                 let jsPath = fullPath(element)
                 cy.get(jsPath).then($candidates => {
@@ -205,19 +178,6 @@ function randRClick(){
                 cy.get(`#${element.id}`).rightclick()
                 info = `${element.tagName} with id: ${element.id}`
             }
-            /*else if(!!element.className){ //boolean that indicates if the element has a non-empty className
-                let className = element.tagName.splice(0,1)+'.'+element.className.replace(/\s/g, ".")
-                cy.get(`.${className}`).then($candidates => {
-                    //rightclick the first visible candidate
-                    for(let i = 0 i < $candidates.length i++){
-                        let candidate = $candidates.get(i)
-                        if(!Cypress.dom.isHidden(candidate)){
-                            cy.wrap(candidate).rightclick({force:true})
-                            break
-                        }
-                    }
-                })
-            }*/
             else{
                 let jsPath = fullPath(element)
                 cy.get(jsPath).then($candidates => {
@@ -257,18 +217,6 @@ function randHover(){
                     cy.get(`#${element.id}`).trigger('mouseover')
                     info = `${element.tagName} with id: ${element.id}`
                 }
-                /*else if(!!element.className){ //boolean that indicates if the element has a non-empty className
-                    cy.get(`.${element.className}`).then($candidates => {
-                        //rightclick the first visible candidate
-                        for(let i = 0 i < $candidates.length i++){
-                            let candidate = $candidates.get(i)
-                            if(!Cypress.dom.isHidden(candidate)){
-                                cy.wrap(candidate).trigger('mouseover')
-                                break
-                            }
-                        }
-                    })
-                }*/
                 else{
                     let jsPath = fullPath(element)
                     cy.get(fullPath(element)).then($candidates => {
@@ -508,19 +456,17 @@ function clickRandButton(){
     })
 }
 
-function fillInput(){ //Or fill form
+function fillInput(){
     cy.window().then((win)=>{
         let $inputs = win.document.getElementsByTagName("input");
         let info = ""
         if($inputs.length > 0){
-            var inp = $inputs.item(getRandomInt(0, $inputs.length));
-            //console.log(inp);
-            //console.log(inp.getAttribute("type"));
+            var inp = $inputs.item(getRandomInt(0, $inputs.length))
             if(!Cypress.dom.isHidden(inp)) {
                 focused = true;
                 if(inp.getAttribute("type") == "email"){
-                    let type = faker.internet.email;
-                    cy.wrap(inp).type(faker.internet.email);
+                    let type = faker.internet.email()
+                    cy.wrap(inp).type(faker.internet.email)
                     info = `Input ${inp.id} was filled with ${type}`
                 }
                 else if(inp.getAttribute("type") == "button" || inp.getAttribute("type") == "submit" || inp.getAttribute("type") == "radio" || inp.getAttribute("type") == "checkbox"){
@@ -528,28 +474,28 @@ function fillInput(){ //Or fill form
                     info = `Input ${inp.id} of type ${inp.getAttribute()} was clicked`
                 }
                 else if(inp.getAttribute("type") == "date"){
-                    let type = faker.date;
-                    cy.wrap(inp).type(faker.date);
+                    let type = faker.date()
+                    cy.wrap(inp).type(faker.date)
                     info = `Input ${inp.id} was filled with ${type}`
                 }
                 else if(inp.getAttribute("type") == "tel"){
-                    let type = faker.phone;
-                    cy.wrap(inp).type(type);
+                    let type = faker.phone()
+                    cy.wrap(inp).type(type)
                     info = `Input ${inp.id} was filled with ${type}`
                 }
                 else if(inp.getAttribute("type") == "url"){
-                    let type = faker.internet.url
-                    cy.wrap(inp).type(type);
+                    let type = faker.internet.url()
+                    cy.wrap(inp).type(type)
                     info = `Input ${inp.id} was filled with ${type}`
                 }
                 else if(inp.getAttribute("type") == "number"){
-                    let type = faker.random.number
-                    cy.wrap(inp).type(type);
+                    let type = faker.random.number()
+                    cy.wrap(inp).type(type)
                     info = `Input ${inp.id} was filled with ${type}`
                 }
                 else if(inp.getAttribute("type") == "text" || inp.getAttribute("type") == "password"){
-                    let type = faker.random.alphaNumeric
-                    cy.wrap(inp).type(type);
+                    let type = faker.random.alphaNumeric()
+                    cy.wrap(inp).type(type, {force: true})
                     info = `Input ${inp.id} was filled with ${type}`
                 }
                 else {
@@ -582,12 +528,10 @@ function clearInput(){
         cy.task("logCommand", {funtype: "Action: click anchor", info: info})
     })
 }
-
 function clearLocalStorage(){
     cy.clearLocalStorage();
     cy.task("logCommand", {funtype: "Chaos: Clear local storage", info: "Local storage is clear"})
 }
-
 function clearCookies(){
     cy.clearCookies();
     cy.task("logCommand", {funtype: "Chaos: Clear cookies", info: "Cookies are clear"})
@@ -654,14 +598,13 @@ describe( `${appName} under smarter monkeys`, function() {
     });
     it(`visits ${appName} and survives smarter monkeys`, function() {
         if(!seed) seed = getRandomInt(0, Number.MAX_SAFE_INTEGER);
-
         cy.task('logStart', {"type":"monkey", "url":url, "seed":seed})
         cy.log(`Seed: ${seed}`)
         cy.task('genericLog', {"message":`Seed: ${seed}`})
 
         let pcg = pct_clicks+pct_scrolls+pct_keys+pct_pgnav+pct_selectors+pct_spkeys+pct_actions+pct_browserChaos;
-        if(pcg === 100){
-
+        if(pcg === 100)
+        {
             pending_events[0] = events*pct_clicks/100;
             pending_events[1] = events*pct_scrolls/100;
             pending_events[2] = events*pct_selectors/100;
@@ -684,7 +627,6 @@ describe( `${appName} under smarter monkeys`, function() {
             }
         }
         else cy.task('logPctNo100')
-
     })
 
     afterEach(()=>{

@@ -13,13 +13,13 @@ const pct_scrolls = Cypress.env('pctScroll') || 17
 const pct_selectors = Cypress.env('pctSelectors') || 16
 const pct_keys = Cypress.env('pctKeys') || 16
 const pct_spkeys = Cypress.env('pctSpKeys') || 16
-const pct_pgnav = Cypress.env('pctPgNav') || 16
+const pct_pgnav = Cypress.env('pctPgNav') || 16 
 
 const LOG_FILENAME = "../../../results/monkey-execution.html"
 
 /*
  Bob Jenkins Small Fast, aka smallprng pseudo random number generator is the chosen selection for introducing seeding in the tester
- Credits of the implementation to bryc's answer in this stackoverflow post: https://stackoverflow.com/a/47593316
+ Credits of the implementation to bryc's answer in this stackoverflow post: https://stackoverflow.com/a/47593316 
 */
 function jsf32(a, b, c, d) {
     return function() {
@@ -74,10 +74,10 @@ var evtIndex = 1
 var focused = false
 
 function randClick(){
-
+    
     let randX = getRandomInt(curX, viewportWidth)
     let randY = getRandomInt(curY, viewportHeight)
-
+    
     cy.window().then((win)=>{
         let info = ""
         let element = win.document.elementFromPoint(randX, randY)
@@ -129,7 +129,7 @@ function randDClick(){
 
     let randX = getRandomInt(curX, viewportWidth)
     let randY = getRandomInt(curY, viewportHeight)
-
+    
     cy.window().then((win)=>{
         let info = ""
         console.log(win.document)
@@ -180,10 +180,10 @@ function randDClick(){
 }
 
 function randRClick(){
-
+    
     let randX = getRandomInt(curX, viewportWidth)
     let randY = getRandomInt(curY, viewportHeight)
-
+    
     cy.window().then((win)=>{
         let info = ""
         console.log(win.document)
@@ -226,14 +226,14 @@ function randRClick(){
         else{
             cy.get('body').rightclick(randX, randY, {force:true})
             info = `Position: (${randX}, ${randY}). INVALID, no selectable element`
-        }
+        }        
         cy.task("logCommand", { funtype: "Random right click", info: info})
         focused = !!win.document.activeElement
     })
 }
 
 function randHover(){
-
+    
     let randX = getRandomInt(curX, viewportWidth)
     let randY = getRandomInt(curY, viewportHeight)
 
@@ -285,11 +285,11 @@ function randHover(){
 function avPag(){
     let info = ""
     let prev = curY.valueOf()
-    if(curPageMaxY - curY >= viewportHeight){
+    if(curPageMaxY - curY >= viewportHeight){ 
         if(curPageMaxY - (curY + viewportHeight) >= viewportHeight){
             curY = curY + viewportHeight
             cy.scrollTo(curX, curY)
-        }
+        } 
         else{
             curY = curPageMaxY - viewportHeight
             cy.scrollTo(curX, curY)
@@ -327,11 +327,11 @@ function rePag(){
 function horizontalScrollFw(){
     let info = ""
     let prev = curX.valueOf()
-    if(curPageMaxX - curX >= viewportWidth){
+    if(curPageMaxX - curX >= viewportWidth){ 
         if(curPageMaxX - (curX + viewportWidth) >= viewportWidth){
             curX = curX + viewportWidth
             cy.scrollTo(curX, curY)
-        }
+        } 
         else{
             curX = curPageMaxX - viewportWidth
             cy.scrollTo(curX, curY)
@@ -479,11 +479,11 @@ function getEvtType(i){
 
 //Aggregate in a matrix-like constant
 const functions = [
-    [randClick, randDClick, randRClick],
-    [horizontalScrollBk, horizontalScrollFw, avPag, rePag],
-    [randHover, tab],
-    [typeCharKey],
-    [spkeypress, enter],
+    [randClick, randDClick, randRClick], 
+    [horizontalScrollBk, horizontalScrollFw, avPag, rePag], 
+    [randHover, tab], 
+    [typeCharKey], 
+    [spkeypress, enter], 
     [reload, navBack, navForward, changeViewport]
 ]
 
@@ -507,7 +507,7 @@ function randomEvent(){
     }
 }
 
-var pending_events = [,,,,,]
+var pending_events = [,,,,,] 
 
 describe( `${appName} under monkeys`, function() {
     //Listener
@@ -539,8 +539,8 @@ describe( `${appName} under monkeys`, function() {
             pending_events[3] = events*pct_keys/100
             pending_events[4] = events*pct_spkeys/100
             pending_events[5] = events*pct_pgnav/100
-
-            cy.visit(url).then((win)=>{
+            
+            cy.visit(url).then((win)=>{   
                 let d = win.document
                 curPageMaxY = Math.max( d.body.scrollHeight, d.body.offsetHeight, d.documentElement.clientHeight, d.documentElement.scrollHeight, d.documentElement.offsetHeight) - win.innerHeight
                 curPageMaxX = Math.max( d.body.scrollWidth, d.body.offsetWidth, d.documentElement.clientWidth, d.documentElement.scrollWidth, d.documentElement.offsetWidth) - win.innerWidth
@@ -553,9 +553,14 @@ describe( `${appName} under monkeys`, function() {
             }
         }
         else cy.task('logPctNo100')
-
-    })
+       
+    }) 
     afterEach(()=>{
         cy.task('logEnd')
     })
 })
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//End of random monkey
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
