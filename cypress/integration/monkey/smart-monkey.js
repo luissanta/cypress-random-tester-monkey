@@ -1,24 +1,21 @@
-//Imports
 require('cypress-plugin-tab');
 var fs = require('fs');
 var faker = require('faker');
 
-const url = Cypress.config('baseUrl') || "https://uniandes.edu.co/";
-const appName = Cypress.env('appName')|| "your app";
-const events = Cypress.env('events')|| 100;
-const delay = Cypress.env('delay') || 100;
-var seed = Cypress.env('seed');
+const url = Cypress.config('baseUrl');
+const appName = Cypress.env('appName');
+const events = Cypress.env('events');
+const delay = Cypress.env('delay');
+let seed = Cypress.env('seed');
 
-const num_categories = 7;
-
-const pct_clicks = Cypress.env('pctClicks') || 12;
-const pct_scrolls = Cypress.env('pctScroll') || 12;
-const pct_selectors = Cypress.env('pctSelectors') || 12;
-const pct_keys = Cypress.env('pctKeys') || 12;
-const pct_spkeys = Cypress.env('pctSpKeys') || 12;
-const pct_pgnav = Cypress.env('pctPgNav') || 12;
-const pct_browserChaos = Cypress.env('pctBwChaos') || 12;
-const pct_actions = Cypress.env('pctActions') || 16;
+const pct_clicks = Cypress.env('pctClicks');
+const pct_scrolls = Cypress.env('pctScroll');
+const pct_selectors = Cypress.env('pctSelectors');
+const pct_keys = Cypress.env('pctKeys');
+const pct_spkeys = Cypress.env('pctSpKeys');
+const pct_pgnav = Cypress.env('pctPgNav');
+const pct_browserChaos = Cypress.env('pctBwChaos');
+const pct_actions = Cypress.env('pctActions');
 
 const LOG_FILENAME = "../../../results/smart-monkey-execution.html";
 
@@ -53,7 +50,7 @@ function fullPath(el){
         names.unshift('#'+el.id);
         break;
       }else{
-        if (el==el.ownerDocument.documentElement) names.unshift(el.tagName);
+        if (el == el.ownerDocument.documentElement) names.unshift(el.tagName);
         else{
           for (var c=1,e=el;e.previousElementSibling;e=e.previousElementSibling,c++);
           names.unshift(el.tagName+":nth-child("+c+")");
@@ -567,7 +564,7 @@ function getEvtType(i){
     else if (i===7) return "Action/Click"
 }
 
-var pending_events = [,,,,,,,];
+var pending_events = [];
 
 //Aggregate in a matrix-like constant
 const functions = [
@@ -580,6 +577,17 @@ const functions = [
     [changeViewport, clearCookies, clearLocalStorage],
     [fillInput, clearInput, clickRandAnchor, clickRandButton]
 ];
+
+// describe('have login', function() {
+//     it('login into ghost', function() {
+//         cy.visit('http://20.102.114.58/ghost');
+//         cy.wait(1000);
+//         cy.get('#ember8').type('da.ramirez55@uniandes.edu.co', { force: true });
+//         cy.get('#ember10').type('Cg94F4J&$#i8qjX@a9iP', { force: true });
+//         cy.get('#ember12').click({ force: true });
+//         cy.wait(1000);
+//     })
+// })
 
 describe( `${appName} under smarter monkeys`, function() {
     //Listeners

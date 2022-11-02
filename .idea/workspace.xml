@@ -2,44 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e759d2f5-a9e0-4141-b08e-63ad3cbe49e6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cypress-random-tester-monkey.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/c/1cd7786282577f82e5e5d7703505815e6e9e412e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/0/7030d0b2f71b999ff89a343de08c414af32fc93a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress.json" beforeDir="false" afterPath="$PROJECT_DIR$/cypress.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/fixtures/example.json" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/fixtures/example.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/actions.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/actions.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/aliasing.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/aliasing.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/assertions.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/assertions.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/connectors.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/connectors.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/cookies.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/cookies.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/cypress_api.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/cypress_api.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/files.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/files.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/local_storage.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/local_storage.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/location.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/location.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/misc.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/misc.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/navigation.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/navigation.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/network_requests.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/network_requests.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/querying.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/querying.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/spies_stubs_clocks.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/spies_stubs_clocks.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/traversal.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/traversal.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/utilities.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/utilities.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/viewport.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/viewport.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/waiting.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/waiting.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/window.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/examples/window.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/integration/monkey/monkey.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/monkey/monkey.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cypress/integration/monkey/smart-monkey.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/monkey/smart-monkey.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/plugins/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/plugins/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/support/commands.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/support/commands.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/support/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/support/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monkey-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/monkey-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-monkey-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/smart-monkey-config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +44,7 @@
       <workItem from="1667344843629" duration="817000" />
       <workItem from="1667345948527" duration="2468000" />
       <workItem from="1667386775646" duration="1975000" />
-      <workItem from="1667406034219" duration="3838000" />
+      <workItem from="1667406034219" duration="5550000" />
     </task>
     <servers />
   </component>
